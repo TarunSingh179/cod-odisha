@@ -1,0 +1,17 @@
+{
+  "id": "nrphotography/cod-odisha-training-run",
+  "title": "COD Odisha Training Run",
+  "code_file": "kaggle_train.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "true",
+  "dataset_sources": [
+    "ivanomelchenkoim11/cod10k-dataset"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

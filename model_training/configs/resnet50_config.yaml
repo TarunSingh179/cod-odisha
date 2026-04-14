@@ -1,0 +1,107 @@
+# COD-Odisha Training Configuration - ResNet50 Backbone
+
+# Model Architecture
+model:
+  backbone: resnet50
+  pretrained: true
+  ccsim_out_channels: 128
+  sgfl_out_channels: 64
+
+# Training Hyperparameters
+training:
+  epochs: 100
+  batch_size: 8
+  num_workers: 4
+  
+  optimizer:
+    type: AdamW
+    lr: 0.0001
+    weight_decay: 0.01
+  
+  scheduler:
+    type: CosineAnnealingLR
+    T_max: 100
+    eta_min: 0.000001
+  
+  mixed_precision: true
+  gradient_clip: 1.0
+  
+  loss_weights:
+    bce: 1.0
+    iou: 1.0
+    boundary: 0.5
+    semantic: 0.3
+
+# Data Augmentation
+augmentation:
+  horizontal_flip: true
+  vertical_flip: false
+  rotation_range: 15
+  brightness: 0.2
+  contrast: 0.2
+  saturation: 0.2
+  hue: 0.1
+  random_crop: true
+  crop_size: [352, 352]
+
+# Dataset Configuration
+dataset:
+  name: COD10K
+  train_split: train
+  val_split: test
+  image_size: [352, 352]
+  
+  # Dataset paths (update these for your setup)
+  paths:
+    cod10k_root: ./data/COD10K
+    camo_root: ./data/CAMO
+    nc4k_root: ./data/NC4K
+    custom_odisha_root: ./data/OdishaCustom
+
+# Validation
+validation:
+  interval: 1  # Validate every N epochs
+  save_best: true
+  metric: f_measure  # Options: f_measure, s_measure, e_measure, mae
+
+# Checkpointing
+checkpoint:
+  save_dir: ./checkpoints
+  save_interval: 10
+  keep_last_n: 5
+
+# Logging
+logging:
+  use_wandb: false
+  project_name: cod-odisha
+  log_interval: 50  # Log every N steps
+
+# Device
+device:
+  use_cuda: true
+  gpu_ids: [0]
+
+# Export
+export:
+  onnx:
+    enabled: true
+    opset_version: 13
+    dynamic_axes: true
+
+# ============================================================
+# Cloud Training Profiles
+# ============================================================
+# Use these overrides when training on cloud platforms.
+# Copy the relevant section and update the main config above.
+
+# Google Colab (T4 GPU, 16GB VRAM, 2 CPU cores, 12GB RAM)
+cloud_colab:
+  batch_size: 8
+  num_workers: 2
+  mixed_precision: true
+
+# Kaggle (P100 GPU, 16GB VRAM, 4 CPU cores, 13GB RAM)
+cloud_kaggle:
+  batch_size: 12
+  num_workers: 4
+  mixed_precision: true

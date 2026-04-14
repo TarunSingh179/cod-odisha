@@ -1,0 +1,10 @@
+# COD-Odisha Frontend Dependencies
+# Auto-managed by package.json through npm
+
+# Key dependencies:
+# - React 18.2.0
+# - React Router 6.20.1
+# - Axios 1.6.2
+# - Tailwind CSS 3.4.0
+# - Vite 5.0.8
+# - Lucide React 0.294.0
