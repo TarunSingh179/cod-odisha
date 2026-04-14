@@ -3,6 +3,7 @@ import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import { Home, LayoutDashboard, Github, Info } from 'lucide-react'
 import HomePage from './pages/Home'
 import Dashboard from './pages/Dashboard'
+import Logo from './components/Logo'
 
 const App = () => {
   const location = useLocation()
@@ -19,11 +20,8 @@ const App = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2">
-              <span className="text-2xl">🦎</span>
-              <span className="font-bold text-odisha-primary text-lg hidden sm:block">
-                COD-Odisha
-              </span>
+            <Link to="/" className="flex items-center">
+              <Logo />
             </Link>
 
             {/* Nav Links */}
