@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+.env
+.venv
+venv
+ENV/
+
+# Exclude large ml models
+*.pth
+*.pt
+*.onnx
+*.h5
+*.pkl
+checkpoints/
+
+# Exclude logs
+*.log
+logs/
